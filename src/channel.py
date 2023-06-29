@@ -20,6 +20,35 @@ class Channel:
         self.viewCount = self.channel['items'][0]['statistics']['viewCount']
         self.url = "https://www.youtube.com/channel/" + channel_id
 
+    def __repr__(self):
+        return f'{self.channel_id}, {self.channel}, {self.title}, {self.url}', int(self.subscriberCount)
+
+    def __str__(self):
+        return f"{self.title} ({self.url})"
+
+    def __add__(self, other):
+        self.result_add = int(self.subscriberCount) + int(other.subscriberCount)
+        return self.result_add
+
+    def __sub__(self, other):
+        self.result_sub = int(self.subscriberCount) - int(other.subscriberCount)
+        return self.result_sub
+
+    def __gt__(self, other):
+        return False
+
+    def __ge__(self, other):
+        return False
+
+    def __lt__(self, other):
+        return True
+
+    def __le__(self, other):
+        return True
+
+    def __eq__(self, other):
+        return False
+
     @property
     def channel_id(self):
         return self.__channel_id
@@ -49,7 +78,7 @@ class Channel:
             if os.stat(filename).st_size == 0:
                 json.dump([data_get_api], file, indent=2, ensure_ascii=False)
             else:
-                with open(filename) as json_file:
+                with open(filename, "a", encoding='UTF-8') as json_file:
                     data_list = json.load(json_file)
                 data_list.append(data_get_api)
                 with open(filename, "w", encoding='UTF-8') as json_file:
