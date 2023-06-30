@@ -35,19 +35,39 @@ class Channel:
         return self.result_sub
 
     def __gt__(self, other):
-        return False
+
+        if isinstance(other, Channel):
+            return self.subscriberCount > other.subscriberCount
+        else:
+            return TypeError("Операнд справа должен иметь тип int")
 
     def __ge__(self, other):
-        return False
+
+        if isinstance(other, Channel):
+            return self.subscriberCount >= other.subscriberCount
+        else:
+            return TypeError("Операнд справа должен иметь тип int")
 
     def __lt__(self, other):
-        return True
+
+        if isinstance(other, Channel):
+            return self.subscriberCount < other.subscriberCount
+        else:
+            return TypeError("Операнд справа должен иметь тип int")
 
     def __le__(self, other):
-        return True
+
+        if isinstance(other, Channel):
+            return self.subscriberCount <= other.subscriberCount
+        else:
+            return TypeError("Операнд справа должен иметь тип int")
 
     def __eq__(self, other):
-        return False
+
+        if isinstance(other, Channel):
+            return self.subscriberCount == other.subscriberCount
+        else:
+            return TypeError("Операнд справа должен иметь тип int")
 
     @property
     def channel_id(self):
