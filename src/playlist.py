@@ -32,12 +32,16 @@ class PlayList(MixConnect):
                                                           id=','.join(video_ids)
                                                           ).execute()
 
-        self.total_duration = datetime.timedelta(seconds=0)
+        self.__total_duration = datetime.timedelta(seconds=0)
         for vid in self.time_videos['items']:
 
             iso_8601_duration = vid['contentDetails']['duration']
             duration = isodate.parse_duration(iso_8601_duration)
-            self.total_duration += duration
+            self.__total_duration += duration
+
+    @property
+    def total_duration(self):
+        return self.__total_duration
 
     def show_best_video(self):
         """
