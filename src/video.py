@@ -1,5 +1,3 @@
-from src.channel import Channel
-import json
 import os
 from googleapiclient.discovery import build
 
