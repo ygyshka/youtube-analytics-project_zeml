@@ -25,6 +25,15 @@ class Video:
         except Exception as ex:
 
             print("Пользователь передал несуществующий id видео!")
+            while True:
+                buttons = ['0', '1']
+                user_inp = input("Хотите узнать ошибку?\nВыбирете действие(введите цифру)"
+                                 "\n0 - нет, закончить\n1 - да хочу\n")
+                if user_inp == buttons[0]:
+                    quit('Досвидания!')
+                else:
+                    print(str(type(ex)))
+                    break
 
     def __str__(self):
         return f'{self.title}'
